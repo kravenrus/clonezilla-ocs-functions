@@ -40,7 +40,7 @@ fi
 unsquashfs filesystem.squashfs
 # Внесение изменений в скрипт ../squashfs-root/usr/share/drbl/sbin/ocs-functions
 sed -i '/    initrd_tool="update-initramfs"/a \  elif [ -e "$mnt_pnt/$extra_root_path/usr/sbin/make-initrd" ]; then\n    initrd_tool="make-initrd"' /home/ubuntu/clonezilla/squashfs-root/usr/share/drbl/sbin/ocs-functions
-sed -i '/  case "$initrd_tool" in/a \    # initrd_tool for ALT Education 10.2 or earlier x86_64 (from 26.09.2024 by Kravenrus)\n    "make-initrd")\n      mkinitrd_cmd="make-initrd --kernel=$(ls $mnt_pnt/$extra_root_path/lib/modules | grep alt)" ;;' /home/ubuntu/clonezilla/squashfs-root/usr/share/drbl/sbin/ocs-functions
+sed -i '/  case "$initrd_tool" in/a \    # initrd_tool for ALT Education 10.2 or earlier x86_64 (from 26.09.2024 by Kravenrus)\n    "make-initrd")\n      mkinitrd_cmd="make-initrd --kernel=$(ls $mnt_pnt/$extra_root_path/lib/modules | grep std-def-alt)" ;;' /home/ubuntu/clonezilla/squashfs-root/usr/share/drbl/sbin/ocs-functions
 # Запаковка образа
 mksquashfs squashfs-root/ custom/filesystem.squashfs
 # Ожидание нажатия любой клавиши для продолжения
