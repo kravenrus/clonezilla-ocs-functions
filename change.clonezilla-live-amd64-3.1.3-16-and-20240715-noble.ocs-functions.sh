@@ -1,14 +1,38 @@
 #!/bin/bash
 
 # sudo -i
-# apt update && apt install -y open-vm-tools-desktop squashfs-tools
+# apt update && apt install -y open-vm-tools-desktop git squashfs-tools
+# cd /tmp
+# git clone https://github.com/kravenrus/clonezilla-ocs-functions.git
 
 # Создание рабочего каталога
-mkdir -p /home/user/clonezilla/custom; cd /home/user/clonezilla
+mkdir -p /home/ubuntu/clonezilla/custom; cd /home/ubuntu/clonezillals
 # Ожидание нажатия любой клавиши для продолжения
 echo Подключите .iso образ к виртуальной машине и нажмите любую клавишу для продолжения...; read -n 1
 # Копирование Squashfs-образа в ранее созданный каталог
-cp /media/user/2.8.1-12-amd64/live/filesystem.squashfs /home/user/clonezilla/filesystem.squashfs
+#cp /media/ubuntu/3.1.3-16-amd64/live/filesystem.squashfs /home/ubuntu/clonezilla/filesystem.squashfs
+#cp /media/ubuntu/20240715-noble-amd64/live/filesystem.squashfs /home/ubuntu/clonezilla/filesystem.squashfs
+# Путь к первой и второй версиям файлов
+location1="/media/ubuntu/3.1.3-16-amd64/live/filesystem.squashfs"
+location2="/media/ubuntu/20240715-noble-amd64/live/filesystem.squashfs"
+
+# Директория назначения
+destination="/home/ubuntu/clonezilla/filesystem.squashfs"
+
+# Проверка наличия первого файла
+if [ -f "$location1" ]; then
+    echo "Определено расположение: $location1"
+    cp "$location1" "$destination"
+    echo "Файл скопирован"
+# Проверка наличия второго файла, если первый не найден
+elif [ -f "$location2" ]; then
+    echo "Определено расположение: $location2"
+    cp "$location2" "$destination"
+    echo "Файл скопирован"
+# Если ни один из файлов не найден
+else
+    echo "Ни одно расположение не найдено!"
+fi
 # Распаковка образа
 unsquashfs filesystem.squashfs
 # Внесение изменений в скрипт ../squashfs-root/usr/share/drbl/sbin/ocs-functions
