@@ -9,7 +9,7 @@
 # ./change.clonezilla-live-amd64-3.1.3-16-and-20240715-noble.ocs-functions.sh
 
 # Создание рабочего каталога
-mkdir -p /home/ubuntu/clonezilla/custom; cd /home/ubuntu/clonezillals
+mkdir -p /home/ubuntu/clonezilla/custom; cd /home/ubuntu/clonezilla
 # Ожидание нажатия любой клавиши для продолжения
 echo Подключите .iso образ к виртуальной машине и нажмите любую клавишу для продолжения...; read -n 1
 # Копирование Squashfs-образа в ранее созданный каталог
